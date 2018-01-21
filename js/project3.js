@@ -11,6 +11,10 @@ const zipField = document.querySelector('#zip');
 const cvvField = document.querySelector('#cvv');
 const paypalDiv = document.querySelector('.paypal');
 const bitcoinDiv = document.querySelector('.bitcoin');
+const designMenu = document.querySelector('select[name="user_design"]');
+const colorDiv = document.querySelector('#colors-js-puns');
+const colorMenu = document.querySelector('select[id="color"]');
+const colors = colorMenu.children;
 
 //Set focus on the first text field
 document.getElementById("name").focus();
@@ -32,6 +36,33 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 document.querySelector('select[name="user_title"]').addEventListener('change', onJobChange);
 })
+
+
+colorDiv.style.display = 'none';
+designMenu.addEventListener('change', (event) => {
+    colorDiv.style.display = '';
+    if (event.target.value === 'js puns') {
+        for (let i = 0; i < colors.length; i++) {
+            if (colors[i].className === 'puns') {
+                colors[0].selected = true;
+                colors[i].style.display = '';
+            } else {
+                colors[i].style.display = 'none';
+            }
+        }
+    } else if (event.target.value === 'heart js') {
+        for (let i = 0; i < colors.length; i++) {
+            if (colors[i].className === 'heartJS') {
+                colors[3].selected = true;
+                colors[i].style.display = '';
+            } else {
+                colors[i].style.display = 'none';
+            }
+        }
+    } else {
+        colorDiv.style.display = 'none';
+    }
+});
 
 //"T-Shirt Info" section of the form
 //Form the T-Shirt menu, only display the color options that match the design selected in the "Design" menu.
